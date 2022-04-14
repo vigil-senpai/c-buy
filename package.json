@@ -1,0 +1,27 @@
+{
+  "name": "c-buy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.11",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devstart": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vigil-senpai/c-buy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vigil-senpai/c-buy/issues"
+  },
+  "homepage": "https://github.com/vigil-senpai/c-buy#readme"
+}

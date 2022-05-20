@@ -4,8 +4,12 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "dotenv": "^16.0.1",
     "express": "^4.17.3",
-    "mongoose": "^6.2.11",
+    "express-async-errors": "^3.1.1",
+    "http-status-code": "^2.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^2.0.0",
     "nodemon": "^2.0.15"
   },
   "devDependencies": {},
@@ -17,8 +21,10 @@
     "type": "git",
     "url": "git+https://github.com/vigil-senpai/c-buy.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "c-buy"
+  ],
+  "author": "Group 2 (Software Engineering)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/vigil-senpai/c-buy/issues"

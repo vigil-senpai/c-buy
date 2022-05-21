@@ -7,7 +7,7 @@
 -> Sudah ada  18000 bisnis yang menerima pembayaran melalui cryptocurrency namun di Indonesia sendiri masih sangat sedikit ditemukan. <br>
 -> Terdapat 129 juta penduduk Indonesia (88.1% pengguna internet) yang sudah menggunakan layanan dari e-commerce (tahun 2020). <br>
 -> Jumlah nilai transaksi e-commerce sendiri pada 2020 telah mencapai Rp266 triliun. <br>
--> Indonesia diproyeksikan menjadi negara dengan ekonomi digital nomor satu Asian Tenggara pada 2025. <br> 
+-> Indonesia diproyeksikan menjadi negara dengan ekonomi digital nomor satu Asia Tenggara pada 2025. <br> 
 
 # [- Kekurangan]:
 -> Regulasi aset cryptocurrency di Indonesia belum jelas. <br>
@@ -40,12 +40,12 @@
 
 # [Lampiran (Biodata)]
 -> Ketua: Vincent Pradipta (2401954930) <br>
--> Anggota: Daniel S Elba (2440013866), Christian Darren (2440009345) <br>
--> Dosen Pendamping: IRVAN SANTOSO, S.Kom., M.TI (D5549) <br>
+-> Anggota: Daniel Steven Elba (2440013866), Christian Darren (2440009345) <br>
+-> Dosen Pendamping: Irvan Santoso, S.Kom., M.TI (D5549) <br>
 (Informasi tidak diberikan secara penuh di page ini karena masalah privasi) <br>
 
 # [* Informasi Tambahan]: 
--> Developer dapat melacak data transaksi (tanpa perlu berhubungan dengan pihak ketiga). <br>
+-> Developer dapat melacak data transaksi (tanpa perlu berhubungan dengan pihak ketiga. <br>
 -> Aspek Availability dan Integrity dari blockchain pasti aman. <br>
 
 # [Potential Customer] 

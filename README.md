@@ -61,7 +61,7 @@
 
 # [Kreatifitas]
 -> Menerima transaksi melalui aset cryptocurrency. <br>
--> API produk terbuka untuk publik. <b>
+-> API produk terbuka untuk Developer lain. <br>
 -> Memberikan customization kepada penjual akan page store-nya (pada beberapa element). <br>
 -> Reward / Cashback berupa aset cryptocurrency juga. <br>
 

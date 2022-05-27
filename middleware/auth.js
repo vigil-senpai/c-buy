@@ -1,12 +1,13 @@
 const { createCustomError } = require('../error/custom-error')
 const asyncWrapper = require('./async-wrapper')
 const jwt = require('jsonwebtoken')
+const AuthenticationError = require('../errors/authentication-error')
 
-module.exports = asyncWrapper(async(req, res, next) => {
+module.exports = async(req, res, next) => {
     const authorization = req.headers.authorization
 
     if(!authorization || !authorization.startsWith('Bearer ')) {
-        return next(createCustomError('No Token Provided', 401))
+        throw new AuthenticationError('Credentials not valid')
     }
     
     const token = authorization.split(' ')[1]
@@ -17,6 +18,6 @@ module.exports = asyncWrapper(async(req, res, next) => {
         return next()
     }
     catch(err) {
-        return next(createCustomError('Not Authorized to Perform the Action in this Route', 401))
+        throw new AuthenticationError('Not Authorized to Perform the Action in this Route')
     }
-})
+}

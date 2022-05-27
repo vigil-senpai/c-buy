@@ -1,0 +1,7 @@
+/*
+User ID PK
+User Name
+Password Hash 
+Email AK
+Default Wallet
+*/

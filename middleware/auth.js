@@ -1,4 +1,3 @@
-const { createCustomError } = require('../error/custom-error')
 const jwt = require('jsonwebtoken')
 const AuthenticationError = require('../errors/authentication-error')
 

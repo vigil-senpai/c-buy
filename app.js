@@ -1,5 +1,6 @@
 const express = require('express')
 require('dotenv').config()
+require('express-async-errors')
 
 const app = express()
 const port = process.env.PORT || 8000
@@ -12,7 +13,7 @@ const authRouter = require('./routes/authRouter')
 
 app.use(express.json())
 
-app.use('/api/v1/router', authRouter)
+app.use('/api/v1/auth', authRouter)
 
 app.use(notFound)
 app.use(customErrorHandler)

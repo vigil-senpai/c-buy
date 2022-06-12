@@ -1,7 +1,7 @@
-const { createCustomError } = require("../error/custom-error")
+const {NotFoundError} = require('../errors/index')
 
 const notFound = (req, res, next) => {
-    return next(createCustomError('Route not Found', 404))
+    return next(new NotFoundError('Route not Found'))
 }
 
 module.exports = notFound

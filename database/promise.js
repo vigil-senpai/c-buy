@@ -3,3 +3,5 @@ const queryPromise = (query) => {
         resolve(query)
     })
 }
+
+module.exports = queryPromise

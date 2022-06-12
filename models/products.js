@@ -8,9 +8,9 @@ const createProductTable = () => {
         table.string('storeID').notNullable()
         table.float('price', 3).notNullable()
         table.string('category').notNullable()
-        table.primary('productID').notNullable()
-        table.timestamps().notNullable()
-        table.foreign('storeID').references('storeID').inTable('MsStore')
+        table.timestamps()
+        table.primary('productID')
+        table.foreign('storeID').references('storeID').on('MsStore')
     })
 }
 

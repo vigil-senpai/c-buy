@@ -8,16 +8,16 @@ const createUserTable = () => {
         table.string('passwordHash').notNullable()
         table.string('emailAddress').unique().notNullable()
         table.string('defaultWallet').notNullable()
-        table.timestamps().notNullable()
+        table.timestamps()
         table.primary('userID')
     })
 }
 
-const dropUserTableIfExsists = () => {
+const dropUserTableIfExists = () => {
     return knex.schema.dropTableIfExists('MsUser')
 }
 
 module.exports = {
     createUserTable, 
-    dropUserTableIfExsists
+    dropUserTableIfExists
 }

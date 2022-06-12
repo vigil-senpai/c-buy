@@ -6,9 +6,10 @@ const createTransactionDetailTable = () => {
         table.string('transactionID').notNullable()
         table.string('productID').notNullable()
         table.integer('quantity').notNullable()
-        table.timestamps().notNullable()
+        table.timestamps()
         table.primary('transactionID')
-        table.foreign(['productID', 'transactionID']).references(['productID', 'transactionID']).inTable(['MsProduct', 'TransactionHeader'])
+        table.foreign('productID').references('productID').on('MsProduct')
+        table.foreign('transactionID').references('transactionID').on('TransactionHeader')
     })
 }
 

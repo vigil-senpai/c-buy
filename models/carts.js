@@ -6,14 +6,15 @@ const createCartTable = () => {
         table.string('userID').notNullable()
         table.string('productID').notNullable()
         table.integer('quantity').notNullable()
-        table.timestamps().notNullable()
+        table.timestamps()
         table.primary(['userID', 'productID'])
-        table.foreign(['userID', 'productID']).references(['userID', 'productID']).inTable(['MsUser', 'MsProduct'])
+        table.foreign('userID').references('userID').on('MsUser')
+        table.foreign('productID').references('productID').on('MsProduct')
     })
 }
 
 const dropCartTableIfExists = () => {
-    return knex.schema.dropTableIfExists('MsCart')
+    return knex.schema.dropTableIfExists('Cart')
 }
 
 module.exports = {

@@ -8,7 +8,7 @@ const createStoreTable = () => {
         table.string('storeLocation').notNullable()
         table.string('storeEmailAddress').unique().notNullable()
         table.string('storePasswordHash').notNullable()
-        table.timestamps().notNullable()
+        table.timestamps()
         table.primary('storeID')
     })
 }

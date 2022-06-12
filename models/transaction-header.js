@@ -14,9 +14,10 @@ const createTransactionHeaderTable = () => {
         table.string('userID').notNullable()
         table.string('storeID').notNullable()
         table.string('wallet').notNullable()
-        table.timestamps().notNullable()
+        table.timestamps()
         table.primary('transactionID')
-        table.foreign(['userID', 'storeID']).references(['userID', 'storeID']).inTable(['MsUser', 'MsStore'])
+        table.foreign('userID').references('userID').on('MsUser')
+        table.foreign('storeID').references('storeID').on('MsStore')
     })
 }
 

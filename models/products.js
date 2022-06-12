@@ -1,0 +1,7 @@
+/*
+Product ID PK FK
+Product Name
+Seller ID FK
+Price
+Category
+*/

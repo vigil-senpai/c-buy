@@ -1,0 +1,7 @@
+/*
+Store ID
+Store Name
+Store Location
+Owner Email
+Account Password
+*/

@@ -1,0 +1,5 @@
+/*
+User ID PK FK
+Product ID PK FK
+Quantity
+*/

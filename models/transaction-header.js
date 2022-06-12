@@ -1,10 +1,3 @@
-/*
-Transaction ID PK
-User ID FK
-Store ID FK
-Wallet (default: user's default wallet)
-TimeStamp
-*/
 const knexConfig = require('../knexconfig')
 const knex = require('knex')(knexConfig.development)
 
@@ -14,6 +7,7 @@ const createTransactionHeaderTable = () => {
         table.string('userID').notNullable()
         table.string('storeID').notNullable()
         table.string('wallet').notNullable()
+        table.boolean('status').defaultTo(true)
         table.timestamps()
         table.primary('transactionID')
         table.foreign('userID').references('userID').on('MsUser')

@@ -20,7 +20,7 @@ const createUserTable = () => {
 }
 
 const dropUserTableIfExsists = () => {
-    knex.schema.dropTableIfExists('MsUser')
+    return knex.schema.dropTableIfExists('MsUser')
 }
 
 module.exports = {

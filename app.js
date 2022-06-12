@@ -10,6 +10,7 @@ const notFound = require('./middleware/not-found')
 const auth = require('./middleware/auth')
 
 const authRouter = require('./routes/authRouter')
+const { createUserTable } = require('./models/users')
 
 app.use(express.json())
 
@@ -20,6 +21,7 @@ app.use(customErrorHandler)
 
 const startServer = async() => {
     try {
+        await createUserTable()
         app.listen(port, () => {
             console.log(`[*] Server Listening on Port ${port}`)
         })

@@ -5,7 +5,7 @@ const login = async(req, res, next) => {
     if(!username || !password) {
         throw new BadRequestError('Username or/and Password not included')
     }
-    return res.send(username)
+    
 }
 
 module.exports = {

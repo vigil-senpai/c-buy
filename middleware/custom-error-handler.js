@@ -15,7 +15,15 @@ const customErrorHandler = (err, req, res, next) => {
         console.log(err)
         return res.status(StatusCodes.BAD_REQUEST).json({
             success: false, 
-            message: 'Duplicated credentials'
+            message: 'Duplicated Credentials'
+        })
+    }
+    else if(err.errno == 1364) {
+        console.log(`[-] ${err.sqlMessage}`)
+        console.log(err)
+        return res.status(StatusCodes.BAD_REQUEST).json({
+            success: false, 
+            message: 'Missing Data'
         })
     }
     console.log('[-] Unidentified Error')

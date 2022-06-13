@@ -25,7 +25,7 @@ const loginAsUser = async(req, res, next) => {
     if(!result[0]) {
         throw new AuthenticationError('Email and/or Password not Valid')
     }
-    const {userID} = result[0]
+    const userID = result[0].userID
     const token = jwt.sign({userID: userID, passwordHash: passwordHash}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRES_IN})
     return res.status(StatusCodes.CREATED).json({
         success: true, 
@@ -52,7 +52,7 @@ const loginAsStore = async(req, res, next) => {
     if(!result[0]) {
         throw new AuthenticationError('Email and/or Password not Valid')
     }
-    const {storeID} = result[0]
+    const storeID = result[0].storeID
     const token = jwt.sign({storeID: storeID, passwordHash: passwordHash}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRES_IN})
     return res.status(StatusCodes.CREATED).json({
         success: true, 

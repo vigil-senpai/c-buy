@@ -5,7 +5,7 @@ module.exports = async(req, res, next) => {
     const authorization = req.headers.authorization
 
     if(!authorization || !authorization.startsWith('Bearer ')) {
-        throw new AuthenticationError('Credentials not valid')
+        throw new AuthenticationError('Credentials not included')
     }
     
     const token = authorization.split(' ')[1]

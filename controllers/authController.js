@@ -20,7 +20,7 @@ const loginAsUser = async(req, res, next) => {
         emailAddress: emailAddress, 
         passwordHash: passwordHash
     }
-    const query = knex('MsUser').select('UserID').where(condition)
+    const query = knex('MsUser').select('userID').where(condition)
     const result = await queryPromise(query)
     if(!result[0]) {
         throw new AuthenticationError('Email and/or Password not Valid')

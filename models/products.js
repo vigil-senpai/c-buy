@@ -3,10 +3,10 @@ const knex = require('knex')(knexConfig.development)
 
 const createProductTable = () => {
     return knex.schema.createTable('MsProduct', (table) => {
-        table.string('productID').notNullable()
+        table.string('productID', 36).notNullable()
         table.string('productName').notNullable()
-        table.string('storeID').notNullable()
-        table.float('price', 3).notNullable()
+        table.string('storeID', 36).notNullable()
+        table.float('price', 2).notNullable()
         table.string('category').notNullable()
         table.timestamps()
         table.primary('productID')

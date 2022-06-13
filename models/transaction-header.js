@@ -3,9 +3,9 @@ const knex = require('knex')(knexConfig.development)
 
 const createTransactionHeaderTable = () => {
     return knex.schema.createTable('TransactionHeader', (table) => {
-        table.string('transactionID').notNullable()
-        table.string('userID').notNullable()
-        table.string('storeID').notNullable()
+        table.string('transactionID', 36).notNullable()
+        table.string('userID', 36).notNullable()
+        table.string('storeID', 36).notNullable()
         table.string('wallet').notNullable()
         table.boolean('status').defaultTo(true)
         table.timestamps()

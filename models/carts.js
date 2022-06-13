@@ -3,8 +3,8 @@ const knex = require('knex')(knexConfig.development)
 
 const createCartTable = () => {
     return knex.schema.createTable('Cart', (table) => {
-        table.string('userID').notNullable()
-        table.string('productID').notNullable()
+        table.string('userID', 36).notNullable()
+        table.string('productID', 36).notNullable()
         table.integer('quantity').notNullable()
         table.timestamps()
         table.primary(['userID', 'productID'])

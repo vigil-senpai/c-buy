@@ -3,11 +3,11 @@ const knex = require('knex')(knexConfig.development)
 
 const createStoreTable = () => {
     return knex.schema.createTable('MsStore', (table) => {
-        table.string('storeID').notNullable()
+        table.string('storeID', 36).notNullable()
         table.string('storeName').notNullable()
         table.string('storeLocation').notNullable()
         table.string('storeEmailAddress').unique().notNullable()
-        table.string('storePasswordHash').notNullable()
+        table.string('storePasswordHash', 64).notNullable()
         table.timestamps()
         table.primary('storeID')
     })

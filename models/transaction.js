@@ -3,8 +3,8 @@ const knex = require('knex')(knexConfig.development)
 
 const createTransactionDetailTable = () => {
     return knex.schema.createTable('TransactionDetail', (table) => {
-        table.string('transactionID').notNullable()
-        table.string('productID').notNullable()
+        table.string('transactionID', 36).notNullable()
+        table.string('productID', 36).notNullable()
         table.integer('quantity').notNullable()
         table.timestamps()
         table.primary('transactionID')

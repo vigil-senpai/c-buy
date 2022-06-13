@@ -21,7 +21,7 @@ const { createTransactionDetailTable, dropTransactionDetailTableIfExists } = req
 app.use(express.json())
 
 app.use('/api/v1/auth', authRouter)
-app.use('/api/v1/products', auth, productsRouter)
+app.use('/api/v1/product', auth, productsRouter)
 
 app.use(notFound)
 app.use(customErrorHandler)
@@ -44,7 +44,7 @@ const createTables = async() => {
 
 const startServer = async() => {
     try {
-        await createTables()
+        // await createTables()
         app.listen(port, () => {
             console.log(`[*] Server Listening on Port ${port}`)
         })

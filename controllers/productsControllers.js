@@ -23,10 +23,8 @@ const getProducts = async(req, res, next) => {
 
 const getProduct = async(req, res, next) => {
     const productID = req.params.productID
-    console.log(productID)
     const query = knex('MsProduct').select('*').where({productID: productID})
     const result = await queryPromise(query)
-    console.log(result)
     if(!result[0]) {
         throw new NotFoundError('Product Not Found')
     }
@@ -78,12 +76,13 @@ const patchProduct = async(req, res, next) => {
     await queryPromise(query)
     return res.status(StatusCodes.CREATED).json({
         success: true, 
-        product: insertParam
+        update: updateParam
     })
 }
 
 module.exports = {
     getProducts,
     getProduct, 
-    postProduct
+    postProduct, 
+    patchProduct
 }

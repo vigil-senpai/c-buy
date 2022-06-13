@@ -11,8 +11,19 @@ module.exports = async(req, res, next) => {
     const token = authorization.split(' ')[1]
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
-        const {id, username} = decoded
-        req.user = {id, username}
+        const {userID, storeID, passwordHash} = decoded
+        if(userID) {
+            req.body.user = {
+                userID: userID,
+                passwordHash: passwordHash
+            }
+        }
+        else if(storeID) {
+            req.body.store = {
+                storeID: storeID, 
+                passwordHash: passwordHash
+            }
+        }
         return next()
     }
     catch(err) {

@@ -8,7 +8,7 @@ const getProductsFromStore = async(req, res, next) => {
     if(!req.body.user) {
         throw new AuthenticationError('No User Privilege')
     }
-    const storeID = req.params['storeID']
+    const storeID = req.params.storeID
     const searchStoreQuery = knex('MsSore').select('storeName').where({storeID: storeID})
     const searchedStore = await queryPromise(searchStoreQuery)
     const storeName = searchedStore[0].storeName

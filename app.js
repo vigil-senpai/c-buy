@@ -37,6 +37,7 @@ const createTables = async() => {
     await createCartTable()
     await createTransactionHeaderTable()
     await createTransactionDetailTable()
+    console.log('[*] Table Created')
 }
 
 const startServer = async() => {

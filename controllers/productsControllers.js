@@ -60,19 +60,19 @@ const patchProduct = async(req, res, next) => {
     if(!req.body.store) {
         throw new AuthenticationError('No Store Privilege')
     }
-    const {productID, productName, storeID, price, category, stocks} = req.body
+    const {productID, productName, price, category, stocks} = req.body
+    const {storeID} = req.body.store
     if(!productID) {
         throw new BadRequestError('ProductID not inserted')
     }
     let updateParam = {
         productName: productName, 
-        storeID: storeID,
         price: price, 
         category: category,
         stocks: stocks
     }
     updateParam = filterUndefined(updateParam)
-    const query = knex('MsProduct').update(updateParam).where({productID: productID})
+    const query = knex('MsProduct').update(updateParam).where({productID: productID, storeID: storeID})
     await queryPromise(query)
     return res.status(StatusCodes.CREATED).json({
         success: true, 
@@ -80,9 +80,25 @@ const patchProduct = async(req, res, next) => {
     })
 }
 
+const deleteProduct = async(req, res, next) => {
+    if(!req.body.store) {
+        throw new AuthenticationError('No Store Privilege')
+    }
+    const {productID} = req.body
+    const {storeID} = req.body.store
+    
+    const query = knex('MsProduct').del().where({productID: productID, storeID: storeID})
+    await queryPromise(query)
+    return res.status(StatusCodes.OK).json({
+        success: true, 
+        deletedProductID: productID
+    })
+}
+
 module.exports = {
     getProducts,
     getProduct, 
     postProduct, 
-    patchProduct
+    patchProduct, 
+    deleteProduct
 }

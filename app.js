@@ -10,6 +10,10 @@ const notFound = require('./middleware/not-found')
 const auth = require('./middleware/auth')
 
 const authRouter = require('./routes/authRouter')
+const productsRouter = require('./routes/productsRouter')
+const storeRouter = require('./routes/storesRouter')
+const usersRouter = require('./routes/usersRouter')
+
 const { createUserTable, dropUserTableIfExists } = require('./models/users')
 const { createStoreTable, dropStoreTableIfExists } = require('./models/stores')
 const { createCartTable, dropCartTableIfExists } = require('./models/carts')
@@ -20,6 +24,9 @@ const { createTransactionDetailTable, dropTransactionDetailTableIfExists } = req
 app.use(express.json())
 
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/product', auth, productsRouter)
+app.use('/api/v1/store', auth, storeRouter)
+app.use('/api/v1/user', auth, usersRouter)
 
 app.use(notFound)
 app.use(customErrorHandler)
@@ -37,6 +44,7 @@ const createTables = async() => {
     await createCartTable()
     await createTransactionHeaderTable()
     await createTransactionDetailTable()
+    console.log('[*] Table Created')
 }
 
 const startServer = async() => {

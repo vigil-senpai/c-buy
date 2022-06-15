@@ -9,7 +9,7 @@ const getAllUsers = async(req, res, next) => {
     const result = await queryPromise(query)
     return res.status(StatusCodes.OK).json({
         success: true, 
-        userList: result
+        usersList: result
     })
 }
 

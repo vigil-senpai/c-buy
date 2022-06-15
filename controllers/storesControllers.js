@@ -4,14 +4,23 @@ const { BadRequestError, AuthenticationError } = require('../errors')
 const knexConfig = require('../knexconfig')
 const knex = require('knex')(knexConfig.development)
 
+const getAllStores = async(req, res, next) => {
+    const query = knex('MsStore').select('*')
+    const result = await queryPromise(query)
+    return res.status(StatusCodes.OK).json({
+        success: true, 
+        storesList: result
+    })
+}
+
 const getProductsFromStore = async(req, res, next) => {
     if(!req.body.user) {
         throw new AuthenticationError('No User Privilege')
     }
     const storeID = req.params.storeID
-    const searchStoreQuery = knex('MsStore').select('storeName').where({storeID: storeID})
+    const searchStoreQuery = knex('MsStore').select('*').where({storeID: storeID})
     const searchedStore = await queryPromise(searchStoreQuery)
-    const storeName = searchedStore[0].storeName
+    const store = searchedStore[0].storeName
 
     const query = knex('MsProduct').select('productID', 'productName', 'price', 'category').where({storeID: storeID})
     const result = await queryPromise(query)
@@ -20,13 +29,13 @@ const getProductsFromStore = async(req, res, next) => {
     }
     return res.status(StatusCodes.OK).json({
         success: true,
-        storeID: storeID, 
-        storeName: storeName, 
+        store: store, 
         count: result.length,
         products: result
     })
 }
 
 module.exports = {
-    getProductsFromStore
+    getProductsFromStore, 
+    getAllStores
 }

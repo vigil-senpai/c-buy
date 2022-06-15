@@ -13,6 +13,7 @@ const authRouter = require('./routes/authRouter')
 const productsRouter = require('./routes/productsRouter')
 const storeRouter = require('./routes/storesRouter')
 const usersRouter = require('./routes/usersRouter')
+
 const { createUserTable, dropUserTableIfExists } = require('./models/users')
 const { createStoreTable, dropStoreTableIfExists } = require('./models/stores')
 const { createCartTable, dropCartTableIfExists } = require('./models/carts')

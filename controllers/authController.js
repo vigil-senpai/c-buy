@@ -6,6 +6,7 @@ const { BadRequestError, AuthenticationError } = require("../errors")
 const queryPromise = require('../database/promise')
 const sha256 = require('../misc/sha256')
 const generateID = require('../misc/generate-id')
+const emailValidators = require('../misc/email-validators')
 
 const knexConfig = require('../knexconfig')
 const knex = require('knex')(knexConfig.development)
@@ -69,6 +70,9 @@ const registerUser = async(req, res, next) => {
     if(!emailAddress || !password || !username || !defaultWallet) {
         throw new BadRequestError('Credentials not complete')
     }
+    if(!emailValidators(emailAddress)) {
+        throw new BadRequestError('Email not valid')
+    }
     const passwordHash = sha256(password)
     const insertParam = {
         userID: generateID(), 
@@ -91,6 +95,9 @@ const registerStore = async(req, res, next) => {
     const {storeName, storeLocation, storeEmailAddress, password, storeWallet} = req.body
     if(!storeEmailAddress || !password || !storeName || !storeWallet || !storeLocation) {
         throw new BadRequestError('Credentials not complete')
+    }
+    if(!emailValidators(storeEmailAddress)) {
+        throw new BadRequestError('Email not valid')
     }
     const passwordHash = sha256(password)
     const insertParam = {

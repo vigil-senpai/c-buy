@@ -49,7 +49,7 @@ const createTables = async() => {
 
 const startServer = async() => {
     try {
-        // await createTables()
+        await createTables()
         app.listen(port, () => {
             console.log(`[*] Server Listening on Port ${port}`)
         })

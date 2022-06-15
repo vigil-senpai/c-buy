@@ -88,7 +88,10 @@ const deleteProduct = async(req, res, next) => {
     const {storeID} = req.body.store
     
     const query = knex('MsProduct').del().where({productID: productID, storeID: storeID})
-    await queryPromise(query)
+    const result = await queryPromise(query)
+    if(result == 0) {
+        throw new NotFoundError('Product with given ID not found')
+    }
     return res.status(StatusCodes.OK).json({
         success: true, 
         deletedProductID: productID

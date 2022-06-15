@@ -13,6 +13,9 @@ const getProducts = async(req, res, next) => {
     const {limit, offset, page} = req.body
     const query = knex('MsProduct').select('*').offset(offset).limit(limit)
     const result = await queryPromise(query)
+    if(!result[0] && page > 1) {
+        throw new Error('Page number is excessive')
+    }
     return res.status(StatusCodes.OK).json({
         success: true, 
         page: page, 

@@ -13,6 +13,7 @@ const getProducts = async(req, res, next) => {
     const result = await queryPromise(query)
     return res.status(StatusCodes.OK).json({
         userID: userID, 
+        count: result.length, 
         usersProducts: result
     })
 }

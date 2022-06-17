@@ -11,7 +11,7 @@ const getProducts = async(req, res, next) => {
     const {userID} = req.body.user
     const query = knex('Cart').select('*').where({userID: userID})
     const result = await queryPromise(query)
-    res.status(StatusCodes.OK).json({
+    return res.status(StatusCodes.OK).json({
         userID: userID, 
         usersProducts: result
     })
@@ -33,7 +33,7 @@ const postProductChart = async(req, res, next) => {
     }
     const query = knex('Cart').insert(insertParam)
     await queryPromise(query)
-    res.status(StatusCodes.CREATED).json(insertParam)
+    return res.status(StatusCodes.CREATED).json(insertParam)
 }
 
 module.exports = {

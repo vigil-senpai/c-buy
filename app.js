@@ -13,6 +13,7 @@ const authRouter = require('./routes/authRouter')
 const productsRouter = require('./routes/productsRouter')
 const storeRouter = require('./routes/storesRouter')
 const usersRouter = require('./routes/usersRouter')
+const cartsRouter = require('./routes/cartsRouter')
 
 const { createUserTable, dropUserTableIfExists } = require('./models/users')
 const { createStoreTable, dropStoreTableIfExists } = require('./models/stores')
@@ -27,6 +28,7 @@ app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/product', auth, productsRouter)
 app.use('/api/v1/store', auth, storeRouter)
 app.use('/api/v1/user', auth, usersRouter)
+app.use('/api/v1/cart', auth, cartsRouter)
 
 app.use(notFound)
 app.use(customErrorHandler)
@@ -49,7 +51,7 @@ const createTables = async() => {
 
 const startServer = async() => {
     try {
-        await createTables()
+        // await createTables()
         app.listen(port, () => {
             console.log(`[*] Server Listening on Port ${port}`)
         })

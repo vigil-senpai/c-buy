@@ -64,8 +64,33 @@ const updateChartQty = async(req, res, next) => {
     })
 }
 
+const deleteCartProduct = async(req, res, next) => {
+    if(!req.body.user) {
+        throw new AuthenticationError('No User Privilege')
+    }
+    const {userID} = req.body.user
+    const {productID} = req.body
+    if(!productID) {
+        throw new BadRequestError('Product ID not provided')
+    }
+    const condParam = {
+        userID: userID, 
+        productID: productID
+    }
+    const deleteProductQuery = knex('Cart').where(condParam).del()
+    const result = await queryPromise(deleteProductQuery)
+    if(result == 0) {
+        throw new NotFoundError('Product Not Found')
+    }
+    return res.status(StatusCodes.OK).json({
+        success: true, 
+        deletedProduct: productID
+    })
+}
+
 module.exports = {
     getProducts, 
     postProductChart,
-    updateChartQty
+    updateChartQty, 
+    deleteCartProduct
 }

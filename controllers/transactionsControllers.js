@@ -49,6 +49,7 @@ const createTransaction = async(req, res, next) => {
                 console.log(err)
                 successFlag = 0
             })
+            await knex('Cart').where({productID: productID, userID: userID}).del()
         }
     }
     if(successFlag == 1) {

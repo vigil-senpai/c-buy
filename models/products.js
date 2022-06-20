@@ -8,7 +8,7 @@ const createProductTable = () => {
         table.string('storeID', 36).notNullable()
         table.float('price').notNullable().checkPositive()
         table.string('category').notNullable()
-        table.integer('stocks').notNullable().checkPositive()
+        table.integer('stocks').notNullable().check('?? >= 0', ['stocks'])
         table.timestamps()
         table.primary('productID')
         table.foreign('storeID').references('storeID').on('MsStore')

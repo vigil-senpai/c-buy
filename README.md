@@ -2,13 +2,19 @@
 
 ## Pre-requisites
 
-1. Familiarize with NPM [Documentation](https://docs.npmjs.com/)
+1. Familiarize with NPM 
+[Documentation](https://docs.npmjs.com/)
 
-2. Learn Node.js and Express.js [Node.js Documentation](https://nodejs.org/en/docs/) [Express.js Documentation](https://expressjs.com/en/api.html#express)
+2. Learn Node.js and Express.js 
+[Node.js Documentation](https://nodejs.org/en/docs/) 
+[Express.js Documentation](https://expressjs.com/en/api.html#express)
 
-3. Familiarize with MySQL [Documentation](https://dev.mysql.com/doc/)
+3. Familiarize with MySQL 
+[Documentation](https://dev.mysql.com/doc/)
 
-4. Familiarize with Libraries used [Knex Documentation](https://knexjs.org/guide/) [jsonwebtoken Documentation](https://www.npmjs.com/package/jsonwebtoken)
+4. Familiarize with Libraries used 
+[Knex Documentation](https://knexjs.org/guide/) 
+[jsonwebtoken Documentation](https://www.npmjs.com/package/jsonwebtoken)
 
 ## Setup
 
@@ -34,7 +40,7 @@ npm run devstart
 # deployment start
 npm start
 ```
-## Team Members
+## Contributors / Team Members
 
 - Vincent Pradipta (xhfmvls)
 - Daniel Steven Elba (Dr4b0t)

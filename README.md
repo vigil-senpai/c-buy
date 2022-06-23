@@ -23,16 +23,27 @@
 PORT = <PORT>
 MYSQL_USER = <Default MySQL User>
 MYSQL_PASSWORD = <MySQL Password>
+MYSQL_DATABASE = <MySQL Database used>
 JWT_SECRET = <SECRET>
 JWT_EXPIRES_IN = <JWT Expired Interval>
 ```
 
-2. Run dependencies installation.
+2. Create MySQL Database
+```sh
+mysql -u <MySQL User> -p
+# enter password on given prompt
+Password: <MySQL Password>
+
+# Create Database
+CREATE DATABSE <MySQL Database Name>; 
+```
+
+3. Run dependencies installation.
 ```sh
 npm install
 ```
 
-3. Run the project for the first time.
+4. Run the project for the first time.
 ```sh
 # nodemon development start
 npm run devstart

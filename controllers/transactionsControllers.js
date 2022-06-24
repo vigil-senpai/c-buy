@@ -6,6 +6,34 @@ const { StatusCodes } = require("http-status-codes")
 const knex = require('knex')(knexConfig.development)
 const Promise = require('bluebird')
 
+const confirmTransaction = async(req, res, next) => {
+    if(!req.body.user) {
+        throw new AuthenticationError('No User Privilege')
+    }
+    const {userID} = req.body.user 
+    const {transactionID} = req.body
+    if(!userID || !transactionID) {
+        throw new NotFoundError('No Product(s) in Request')
+    }
+    const result = await knex('TransactionHeader').select('status').where({transactionID: transactionID})
+    if(!result[0]) {
+        throw new NotFoundError('No Transaction Found')
+    }
+    await knex('TransactionHeader').update({status: 1}).where({transactionID: transactionID})
+    await knex('TransactionDetail')
+        .select(['productID', 'quantity'])
+        .where({transactionID: transactionID})
+        .then((resp) => {
+            resp.forEach(async(transaction) => {
+                const {productID, quantity} = transaction
+                await knex('MsProduct')
+                    .decrement('stocks', quantity)
+                    .where({productID: productID})
+            })
+        })
+    res.send('test')
+}
+
 const createTransaction = async(req, res, next) => {
     if(!req.body.user) {
         throw new AuthenticationError('No User Privilege')
@@ -44,11 +72,6 @@ const createTransaction = async(req, res, next) => {
                 quantity: quantity
             }
             await knex('TransactionDetail').insert(insertTransDetailParam)
-            await knex('MsProduct').decrement({stocks: quantity}).where({productID: productID})
-            .catch((err) => {
-                console.log(err)
-                successFlag = 0
-            })
             await knex('Cart').where({productID: productID, userID: userID}).del()
         }
     }
@@ -69,4 +92,5 @@ const createTransaction = async(req, res, next) => {
 
 module.exports = {
     createTransaction, 
+    confirmTransaction
 }

@@ -99,7 +99,41 @@ const createTransaction = async(req, res, next) => {
     })
 }
 
+const getAllTransactions = async(req, res, next) => {
+    if(!req.body.user) {
+        throw new AuthenticationError('No User Privilege')
+    }
+    const {userID} = req.body.user
+    const result = await knex('transactionHeader').select('*').where({userID: userID})
+    return res.status(StatusCodes.OK).json({
+        success: true, 
+        counst: result.length,
+        transactionsList: result
+    })
+}
+
+const getTransactionData = async(req, res, next) => {
+    if(!req.body.user) {
+        throw new AuthenticationError('No User Privilege')
+    }
+    const {userID} = req.body.user
+    const transactionID = req.params.transactionID
+    const transactionHeader = await knex('transactionHeader').select('*').where({userID: userID, transactionID: transactionID})
+    if(!transactionHeader[0]) {
+        throw new BadRequestError(`Transaction with ID ${transactionID} Not Found`)
+    }
+    const transactionDetails = await knex('transactionDetail').select('*').where({transactionID: transactionID})
+    return res.status(StatusCodes.OK).json({
+        success: true, 
+        transactionHeader: transactionHeader, 
+        count: transactionDetails.length, 
+        transactionDetails: transactionDetails
+    })
+}
+
 module.exports = {
     createTransaction, 
-    confirmTransaction
+    confirmTransaction, 
+    getAllTransactions, 
+    getTransactionData
 }

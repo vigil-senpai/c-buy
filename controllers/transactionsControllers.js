@@ -4,6 +4,7 @@ const knexConfig = require('../knexconfig')
 const queryPromise = require("../database/promise")
 const { StatusCodes } = require("http-status-codes")
 const knex = require('knex')(knexConfig.development)
+const {walletList} = require('../wallet-address-list.json')
 
 const confirmTransaction = async(req, res, next) => {
     if(!req.body.user) {
@@ -85,6 +86,7 @@ const createTransaction = async(req, res, next) => {
 
     return res.status(StatusCodes.CREATED).json({
         success: true,
+        wallet: walletList[Math.floor(Math.random() * walletList.length)],
         transactionList: transactionIDList
     })
 }

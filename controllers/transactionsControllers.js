@@ -10,6 +10,7 @@ const confirmTransaction = async(req, res, next) => {
     if(!req.body.user) {
         throw new AuthenticationError('No User Privilege')
     }
+    let successFlag = 1
     const {userID} = req.body.user 
     const {transactionID} = req.body
     if(!userID || !transactionID) {
@@ -19,6 +20,9 @@ const confirmTransaction = async(req, res, next) => {
     const result = await knex('TransactionHeader').select('status').where({transactionID: transactionID})
     if(!result[0]) {
         throw new NotFoundError('No Transaction Found')
+    }
+    if(result[0].status == 1) {
+        throw new BadRequestError('Transaction Already Success')
     }
     await knex('TransactionHeader').update({status: 1}).where({transactionID: transactionID})
     await knex('TransactionDetail')
@@ -31,11 +35,15 @@ const confirmTransaction = async(req, res, next) => {
                     .decrement('stocks', quantity)
                     .where({productID: productID})
                     .catch(async(err) => {
-                        await knex.raw('ROLLBACK;')
-                        throw new BadRequestError(err.sqlMessage)
+                        console.log(err)
+                        successFlag = 0
                     })
             })
         })
+    if(successFlag == 0) {
+        await knex.raw('ROLLBACK;')
+        throw new BadRequestError(err.sqlMessage)
+    }
     await knex.raw('COMMIT;')
     return res.status(StatusCodes.CREATED).json({
         success: true, 

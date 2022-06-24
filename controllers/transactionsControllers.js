@@ -7,6 +7,7 @@ const knex = require('knex')(knexConfig.development)
 const Promise = require('bluebird')
 
 const confirmTransaction = async(req, res, next) => {
+    let successFlag = 1
     if(!req.body.user) {
         throw new AuthenticationError('No User Privilege')
     }
@@ -15,6 +16,7 @@ const confirmTransaction = async(req, res, next) => {
     if(!userID || !transactionID) {
         throw new NotFoundError('No Product(s) in Request')
     }
+    await knex.raw('START TRANSACTION;')
     const result = await knex('TransactionHeader').select('status').where({transactionID: transactionID})
     if(!result[0]) {
         throw new NotFoundError('No Transaction Found')
@@ -29,8 +31,17 @@ const confirmTransaction = async(req, res, next) => {
                 await knex('MsProduct')
                     .decrement('stocks', quantity)
                     .where({productID: productID})
+                    .catch((err) => {
+                        console.warn(err)
+                        successFlag = 0
+                    })
             })
         })
+    if(successFlag == 0) {
+        await knex.raw('ROLLBACK;')
+        throw new BadRequestError('Query invalid')
+    }
+    await knex.raw('COMMIT;')
     res.send('test')
 }
 
@@ -39,8 +50,7 @@ const createTransaction = async(req, res, next) => {
         throw new AuthenticationError('No User Privilege')
     }
     const {userID} = req.body.user
-    let successFlag = 1
-    await knex.raw('START TRANSACTION;') // Make sure to start tranasction in the mysql
+    await knex.raw('START TRANSACTION;')
 
     const selectStoresFromCartQuery = knex('Cart').join('MsProduct', 'Cart.productID', '=', 'MsProduct.productID').select('storeID').where({userID: userID}).groupBy('storeID')
     const storesIDList = await queryPromise(selectStoresFromCartQuery)
@@ -75,14 +85,6 @@ const createTransaction = async(req, res, next) => {
             await knex('Cart').where({productID: productID, userID: userID}).del()
         }
     }
-    if(successFlag == 1) {
-        await knex.raw('COMMIT;')
-    }
-    else if(successFlag == 0) {
-        await knex.raw('ROLLBACK;')
-        throw new BadRequestError('Query invalid')
-    }
-
 
     return res.status(StatusCodes.CREATED).json({
         success: true,

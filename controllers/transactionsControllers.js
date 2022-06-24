@@ -4,10 +4,8 @@ const knexConfig = require('../knexconfig')
 const queryPromise = require("../database/promise")
 const { StatusCodes } = require("http-status-codes")
 const knex = require('knex')(knexConfig.development)
-const Promise = require('bluebird')
 
 const confirmTransaction = async(req, res, next) => {
-    let successFlag = 1
     if(!req.body.user) {
         throw new AuthenticationError('No User Privilege')
     }
@@ -31,18 +29,17 @@ const confirmTransaction = async(req, res, next) => {
                 await knex('MsProduct')
                     .decrement('stocks', quantity)
                     .where({productID: productID})
-                    .catch((err) => {
-                        console.warn(err)
-                        successFlag = 0
+                    .catch(async(err) => {
+                        await knex.raw('ROLLBACK;')
+                        throw new BadRequestError(err.sqlMessage)
                     })
             })
         })
-    if(successFlag == 0) {
-        await knex.raw('ROLLBACK;')
-        throw new BadRequestError('Query invalid')
-    }
     await knex.raw('COMMIT;')
-    res.send('test')
+    return res.status(StatusCodes.CREATED).json({
+        success: true, 
+        message: 'Data updated'
+    })
 }
 
 const createTransaction = async(req, res, next) => {
@@ -57,7 +54,7 @@ const createTransaction = async(req, res, next) => {
     if(!storesIDList[0]) {
         throw new NotFoundError('No Product(s) in Chart')
     }
-    let resultCartDataList = []
+    let transactionIDList = []
     for(let i in storesIDList) {
         const currStoreID = storesIDList[i].storeID
         const transactionID = generateId()
@@ -67,6 +64,7 @@ const createTransaction = async(req, res, next) => {
             storeID: currStoreID, 
             status: false
         }
+        transactionIDList.push(transactionID)
         const insertTransQuery = knex('TransactionHeader').insert(headerInsertParam)
         await queryPromise(insertTransQuery)
 
@@ -74,7 +72,6 @@ const createTransaction = async(req, res, next) => {
         const cartData = await queryPromise(selectTransDataFromCartQuery)
 
         for(let j in cartData) {
-            resultCartDataList.push(cartData[j])
             const {productID, quantity} = cartData[j]
             const insertTransDetailParam = {
                 transactionID: transactionID, 
@@ -88,7 +85,7 @@ const createTransaction = async(req, res, next) => {
 
     return res.status(StatusCodes.CREATED).json({
         success: true,
-        products: resultCartDataList
+        transactionList: transactionIDList
     })
 }
 

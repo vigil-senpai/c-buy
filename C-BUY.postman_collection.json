@@ -1,0 +1,793 @@
+{
+	"info": {
+		"_postman_id": "e7ff56b5-c7c6-47e6-be9f-907133d673f4",
+		"name": "C-BUY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17856588"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "loginAsUser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emailAddress\": \"leone.abbacchio@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login/user",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loginAsStore",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emailAddress\": \"don_store@yahoo.com\", \r\n    \"password\": \"thisIsStorePassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login/store",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registerAsUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Leone Abbacchio\", \r\n    \"emailAddress\": \"leone.abbacchio@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"defaultWallet\": \"tz1YWzoazoR277CJ6j23DA6zdnr4fpbTtjKP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/register/user",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"register",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registerAsUser Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"bloo\", \r\n    \"emailAddress\": \"bloo.bloo@gmail.com\",\r\n    \"password\": \"test\",\r\n    \"defaultWallet\": \"tz1YWzoazoR277CJ6j23DA6zdnr4fpbTtjKP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/register/user",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"register",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registerAsStore",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"storeName\": \"Donquixote Store\",\r\n    \"storeLocation\": \"Dressrosa\",\r\n    \"storeEmailAddress\": \"don_store@yahoo.com\",\r\n    \"password\": \"thisIsStorePassword\",\r\n    \"storeWallet\": \"tz1M7v3sZo14B2uU6ziZHfZ13cGXnUGYJ2JY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/register/store",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"register",
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registerAsStore Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"storeName\": \"Giorno Abadi\",\r\n    \"storeLocation\": \"Jaksel\",\r\n    \"storeEmailAddress\": \"giorno@abadi.com\",\r\n    \"password\": \"thisIsStorePassword\",\r\n    \"storeWallet\": \"tz1M7v3sZo14B2uU6ziZHfZ13cGXnUGYJ2JY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/register/store",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"register",
+								"store"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "getProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1NDU5YzNkYy01MDNlLTQ3M2UtOGY0NS05YzE1NGQyMGIyMWEiLCJwYXNzd29yZEhhc2giOiI1ZTg4NDg5OGRhMjgwNDcxNTFkMGU1NmY4ZGM2MjkyNzczNjAzZDBkNmFhYmJkZDYyYTExZWY3MjFkMTU0MmQ4IiwiaWF0IjoxNjU2MjU1MzQ2LCJleHAiOjE2NTg4NDczNDZ9.wUwMAB2mXDJTqq2LZ_8ieTv8yAA-fmAF0Xdq5SSj2OM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product/637f2478-769d-4693-b1db-0ffb29598fd2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"637f2478-769d-4693-b1db-0ffb29598fd2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProducts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1Y2E2MDZlNi04ZGQwLTQ5OWUtYTc0NC00OGFhYTZhMmQwMGQiLCJwYXNzd29yZEhhc2giOiJkZmUwZjdmZjIxNmQ1OTQ5NTM1YThhNTc5MGMzMTA0MzU4Mjk5OWZkMGZlZTkyN2UzMDc0ODQ0MjFlZmVhYTBiIiwiaWF0IjoxNjU1NTAwNzI3LCJleHAiOjE2NTgwOTI3Mjd9.IiDDeJJtdyoQM2xp1UkentIIKiPA9F1wxIJA_Y-AY88",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product/page/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"page",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createProduct (store)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZUlEIjoiM2RmMjg3YzktZWI0Yy00NWJmLWJmMjUtNWEwMDJjNmQ3NWJmIiwicGFzc3dvcmRIYXNoIjoiMWEzNDU5NjZhYjg4MDg5YjM3YTlkOTU1NzU0YWI0ZWIyYWZiMmJmNmRlYjUwMzcyOWM2NDA2OWRhMTIzNDQ1MSIsImlhdCI6MTY1NjI2Njk1MiwiZXhwIjoxNjU4ODU4OTUyfQ.pDkn4rVk8eZjZb1P5BJMEunnRipCulE6FjFyvGj4C0c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productName\": \"Tepung Terigo 10kg\",\r\n    \"price\": \"2.22\",\r\n    \"category\": \"Tepung\",\r\n    \"stocks\": 200\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createProduct (store) Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZUlEIjoiZTJmZGY2MDQtN2JlNS00NzE4LWFmNTEtZmFmNzlmYTYwZDI0IiwicGFzc3dvcmRIYXNoIjoiMWEzNDU5NjZhYjg4MDg5YjM3YTlkOTU1NzU0YWI0ZWIyYWZiMmJmNmRlYjUwMzcyOWM2NDA2OWRhMTIzNDQ1MSIsImlhdCI6MTY1NTUwNDYzMCwiZXhwIjoxNjU4MDk2NjMwfQ.-H1zjrK6t3zMRvYWHSFCGZNwWo8VVfjGtHFZYtNDKI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productName\": \"beras pandan 10kg\",\r\n    \"price\": \"2.7\",\r\n    \"category\": \"Beras\",\r\n    \"stocks\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patchProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZUlEIjoiM2RmMjg3YzktZWI0Yy00NWJmLWJmMjUtNWEwMDJjNmQ3NWJmIiwicGFzc3dvcmRIYXNoIjoiMWEzNDU5NjZhYjg4MDg5YjM3YTlkOTU1NzU0YWI0ZWIyYWZiMmJmNmRlYjUwMzcyOWM2NDA2OWRhMTIzNDQ1MSIsImlhdCI6MTY1NjI2Njk1MiwiZXhwIjoxNjU4ODU4OTUyfQ.pDkn4rVk8eZjZb1P5BJMEunnRipCulE6FjFyvGj4C0c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productID\": \"6d07d48c-1e63-46d6-9ad0-2cc36adbe6fd\",\r\n    \"stocks\": 120\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZUlEIjoiM2RmMjg3YzktZWI0Yy00NWJmLWJmMjUtNWEwMDJjNmQ3NWJmIiwicGFzc3dvcmRIYXNoIjoiMWEzNDU5NjZhYjg4MDg5YjM3YTlkOTU1NzU0YWI0ZWIyYWZiMmJmNmRlYjUwMzcyOWM2NDA2OWRhMTIzNDQ1MSIsImlhdCI6MTY1NjI2Njk1MiwiZXhwIjoxNjU4ODU4OTUyfQ.pDkn4rVk8eZjZb1P5BJMEunnRipCulE6FjFyvGj4C0c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productID\": \"b6de73a2-878b-4303-9714-32fcd95c9118\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "store",
+			"item": [
+				{
+					"name": "getStore",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1Y2E2MDZlNi04ZGQwLTQ5OWUtYTc0NC00OGFhYTZhMmQwMGQiLCJwYXNzd29yZEhhc2giOiJkZmUwZjdmZjIxNmQ1OTQ5NTM1YThhNTc5MGMzMTA0MzU4Mjk5OWZkMGZlZTkyN2UzMDc0ODQ0MjFlZmVhYTBiIiwiaWF0IjoxNjU1NTQxOTkyLCJleHAiOjE2NTgxMzM5OTJ9.lrcVFgI-cFMimpsjQvdzzEO7jscawPtIGNX52Ch9Nfc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/store/4aefab43-7530-4351-9d53-e06a84acacab",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"store",
+								"4aefab43-7530-4351-9d53-e06a84acacab"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllStore",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1Y2E2MDZlNi04ZGQwLTQ5OWUtYTc0NC00OGFhYTZhMmQwMGQiLCJwYXNzd29yZEhhc2giOiJkZmUwZjdmZjIxNmQ1OTQ5NTM1YThhNTc5MGMzMTA0MzU4Mjk5OWZkMGZlZTkyN2UzMDc0ODQ0MjFlZmVhYTBiIiwiaWF0IjoxNjU1NTQxOTkyLCJleHAiOjE2NTgxMzM5OTJ9.lrcVFgI-cFMimpsjQvdzzEO7jscawPtIGNX52Ch9Nfc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/store",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"store"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "getUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIwMjZlMDcyMS04Y2Q0LTQwM2MtYTc4Ny1mZTIyZmUwOTM4NzciLCJwYXNzd29yZEhhc2giOiJkZmUwZjdmZjIxNmQ1OTQ5NTM1YThhNTc5MGMzMTA0MzU4Mjk5OWZkMGZlZTkyN2UzMDc0ODQ0MjFlZmVhYTBiIiwiaWF0IjoxNjU1MzA0NDUxLCJleHAiOjE2NTc4OTY0NTF9.g9MqVmk_D-aH2v3jEA0qaXKUBPzgzCTl8BPgPjNJlX0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/user/026e0721-8cd4-403c-a787-fe22fe093877",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								"026e0721-8cd4-403c-a787-fe22fe093877"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIwMjZlMDcyMS04Y2Q0LTQwM2MtYTc4Ny1mZTIyZmUwOTM4NzciLCJwYXNzd29yZEhhc2giOiJkZmUwZjdmZjIxNmQ1OTQ5NTM1YThhNTc5MGMzMTA0MzU4Mjk5OWZkMGZlZTkyN2UzMDc0ODQ0MjFlZmVhYTBiIiwiaWF0IjoxNjU1MzA0NDUxLCJleHAiOjE2NTc4OTY0NTF9.g9MqVmk_D-aH2v3jEA0qaXKUBPzgzCTl8BPgPjNJlX0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/user/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "carts",
+			"item": [
+				{
+					"name": "getAllProducts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/cart",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postProductToChart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productID\": \"04697a81-e5a6-4765-8642-ff3300a42969\", \r\n    \"quantity\": 40\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/cart",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCartQty",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productID\": \"04697a81-e5a6-4765-8642-ff3300a42969\", \r\n    \"quantity\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/cart",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCartProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productID\": \"04697a81-e5a6-4765-8642-ff3300a42969\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/cart",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI0NTVjZDZhNC0xMjQ4LTQ4NjctYjJmNi0xM2FmMTgyNGFjZDAiLCJwYXNzd29yZEhhc2giOiI5Zjg2ZDA4MTg4NGM3ZDY1OWEyZmVhYTBjNTVhZDAxNWEzYmY0ZjFiMmIwYjgyMmNkMTVkNmMxNWIwZjAwYTA4IiwiaWF0IjoxNjU1NzEyMjk2LCJleHAiOjE2NTgzMDQyOTZ9.6hN7Sr5k6fUUNfdkrhhqILD3K74TRD6B18fudq-TkwI",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "transaction",
+			"item": [
+				{
+					"name": "createTransaction",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI0NTVjZDZhNC0xMjQ4LTQ4NjctYjJmNi0xM2FmMTgyNGFjZDAiLCJwYXNzd29yZEhhc2giOiI5Zjg2ZDA4MTg4NGM3ZDY1OWEyZmVhYTBjNTVhZDAxNWEzYmY0ZjFiMmIwYjgyMmNkMTVkNmMxNWIwZjAwYTA4IiwiaWF0IjoxNjU1NzEyMjk2LCJleHAiOjE2NTgzMDQyOTZ9.6hN7Sr5k6fUUNfdkrhhqILD3K74TRD6B18fudq-TkwI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/transaction",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "confirmTransaction",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transactionID\": \"34f036d7-8279-4746-861c-dbef6cb80e21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/transaction",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllTransaction",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/transaction",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTransaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/transaction/0dd6e0ac-b49b-4b9e-82e6-21802f17a1b3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"transaction",
+								"0dd6e0ac-b49b-4b9e-82e6-21802f17a1b3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI0NTVjZDZhNC0xMjQ4LTQ4NjctYjJmNi0xM2FmMTgyNGFjZDAiLCJwYXNzd29yZEhhc2giOiI5Zjg2ZDA4MTg4NGM3ZDY1OWEyZmVhYTBjNTVhZDAxNWEzYmY0ZjFiMmIwYjgyMmNkMTVkNmMxNWIwZjAwYTA4IiwiaWF0IjoxNjU1NzEyMjk2LCJleHAiOjE2NTgzMDQyOTZ9.6hN7Sr5k6fUUNfdkrhhqILD3K74TRD6B18fudq-TkwI",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
